@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../../chai aur react"
+		},
+		{
+			"path": ".."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "projectmanagement"
+	}
+}

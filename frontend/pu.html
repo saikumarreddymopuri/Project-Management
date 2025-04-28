@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Management</title>
+    <link rel="stylesheet" href="pu.css">
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <h1>Update Monitor Name</h1>
+    </div>
+
+    <div class="container">
+        <!-- Project Info Form -->
+        <form id="project-info-form">
+            <label for="projectId">Project ID:</label>
+            <input type="text" id="projectId" placeholder="Enter Project ID" required>
+            <label for="projectName">Project Name:</label>
+            <input type="text" id="projectName" placeholder="Enter Project Name" required>
+            <label for="teamLead">Team Lead:</label>
+            <input type="text" id="teamLead" placeholder="Enter Team Lead Name" required>
+            <button type="submit">Get Project Details</button>
+        </form>
+
+        <!-- Project Summary -->
+        <div id="project-summary" class="hidden">
+            <div class="i-need-a-box" style="border:1px solid black;padding: 21px;border-radius: 0.5rem;">
+                <h2>Project Summary</h2>
+            <p><strong>Project ID:</strong> <span id="summaryProjectId"></span></p>
+            <p><strong>Project Title:</strong> <span id="summaryProjectName"></span></p>
+            <p><strong>Team Lead:</strong> <span id="summaryTeamLead"></span></p>
+            <button id="backBtn"  >Back to Search</button>
+            </div>
+            
+        </div>
+        <div class="spacing-for"></div>
+
+        <!-- Phase Details -->
+        <div id="phase-details" class="hidden">
+            <h2 style="padding-left: 400px;">Phase Details:</h2>
+            <div id="phase-container"></div>
+        </div>
+
+        <!-- Edit Monitor Popup -->
+        <div id="editMonitorPopup" class="popup hidden">
+            <div class="popup-content">
+                <h2>Edit Monitor Name</h2>
+                <label for="newMonitorNameInput">New Monitor Name:</label>
+                <input type="text" id="newMonitorNameInput" required>
+                <button id="saveMonitorNameBtn">Save</button>
+                <button id="cancelMonitorNameBtn">Cancel</button>
+            </div>
+        </div>
+        <div id="backpopup" class="popup hidden">
+            <div class="popup-content">
+                <h2>Monitor name updated successfully</h2>
+                
+                <button id="back">ok</button>
+                
+            </div>
+        </div>
+
+    </div>
+
+    <script src="pu.js"></script>
+    
+    <script src="socket.js"></script>
+</body>
+</html>

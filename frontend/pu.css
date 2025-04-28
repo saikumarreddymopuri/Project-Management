@@ -1,0 +1,165 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Top Bar */
+.top-bar {
+    width: 100%;
+    height: 10vw;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.top-bar h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80vw;
+    margin-top: 20px; /* Adjust for spacing below the top bar */
+}
+.spacing-for{
+    padding: 30px;
+}
+#phase-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    border: 1px solid black;
+}
+h2 {
+    margin-top: 0;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+.hidden {
+    display: none;
+}
+
+.phase-box {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #e9ecef;
+}
+
+.phase-box.completed {
+    border-left: 5px solid #28a745;
+}
+
+.phase-box.on-track {
+    border-left: 5px solid #ffc107;
+}
+
+.phase-box.not-completed {
+    border-left: 5px solid #dc3545;
+}
+
+.edit-button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.edit-button:hover {
+    background-color: #0056b3;
+}
+
+.popup {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: none; /* Hidden by default */
+}
+
+.popup-content {
+    text-align: center;
+}
+
+#newMonitorNameInput {
+    width: 80%;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.hidden {
+    display: none;
+}
+/* #project-summary{
+    /* width: 100vw; */
+    /* background-color: red; */
+*/
+#saveMonitorNameBtn,
+#cancelMonitorNameBtn {
+    margin-top: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+#cancelMonitorNameBtn {
+    margin-left: 10px;
+    background-color: #f44336;
+    color: white;
+}
+
+#saveMonitorNameBtn {
+    background-color: #4CAF50;
+    color: white;
+}

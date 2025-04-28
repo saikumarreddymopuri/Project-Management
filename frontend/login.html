@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: pink;
+    background-image: url('2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: #ffffff;
+}
+
+.container {
+    width: 40%;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+}
+
+
+        h1 {
+           
+            /* margin-bottom: 700px; */
+            /* margin-top: -300px; */
+            /* margin-left: 200px; */
+            font-size: 4rem;
+            text-shadow: 2px 2px 4px #000000;
+            
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            text-align:flex-start;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ffffff;
+            color: #000000;
+            font-size: 1rem;
+        }
+
+        .form-section {
+            margin-bottom: 20px;
+        }
+
+        .form-section h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .form-section button {
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .form-section button:hover {
+            background-color: #4fc7e5;
+            transform: scale(1.05);
+        }
+
+        .form-section button:active {
+            transform: scale(0.95);
+        }
+
+        .register {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        #registerButton {
+            background-color: #4fc7e5;
+            border-radius: 5px;
+            padding: 12px 20px;
+            color: azure;
+            font-size: 1rem;
+            cursor: pointer;
+            /* text-shadow: 0px 0px 3px #ff00ee; */
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        #registerButton:hover {
+            background-color: #4CAF50;
+            transform: scale(1.05);
+        }
+
+        #registerButton:active {
+            transform: scale(0.95);
+        }
+
+        #role {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #4fc7e5;
+            color: white;
+            font-size: 1rem;
+        }
+
+        #responseMessage {
+            text-align: right;
+            margin-top: 20px;
+            font-size: 1rem;
+            color: red;
+        }
+        .maker-space{
+            
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+        
+    </style>
+    <script>
+        function updateForm() {
+            const role = document.getElementById('role').value;
+            const loginForm = document.getElementById('loginForm');
+            const registerButton = document.getElementById('registerButton');
+
+            if (role === 'director') {
+                loginForm.innerHTML = `
+                    <h2>DIRECTOR LOGIN</h2>
+                    <label for="directorName">USER NAME</label>
+                    <input type="text" id="directorName" name="directorName" placeholder="Enter Name" required>
+                    <label for="directorPassword">PASSWORD</label>
+                    <input type="password" id="directorPassword" name="directorPassword" placeholder="Enter Password" required>
+                    <button type="submit">Login</button>
+                    <div id="responseMessage"></div>
+                `;
+                registerButton.textContent = 'REGISTER FOR DIRECTOR';
+                registerButton.onclick = () => location.href = 'regh.html';
+            } else if (role === 'project') {
+                loginForm.innerHTML = `
+                    <h2>MONITOR LOGIN</h2>
+                    <label for="projectName">USER NAME</label>
+                    <input type="text" id="projectName" name="projectName" placeholder="Enter Name" required>
+                    <label for="projectPassword">PASSWORD</label>
+                    <input type="password" id="projectPassword" name="projectPassword" placeholder="Enter Password" required>
+                    <button type="submit">Login</button>
+                    <div id="responseMessage"></div>
+                `;
+                registerButton.textContent = 'REGISTER FOR MONITOR';
+                registerButton.onclick = () => location.href = 'reg.html';
+            } else if (role === 'technical_officer') {
+                loginForm.innerHTML = `
+                    <h2>TECHNICAL OFFICER LOGIN</h2>
+                    <label for="technical_officerName">USER NAME</label>
+                    <input type="text" id="technical_officerName" name="technical_officerName" placeholder="Enter Name" required>
+                    <label for="technical_officerPassword">PASSWORD</label>
+                    <input type="password" id="technical_officerPassword" name="technical_officerPassword" placeholder="Enter Password" required>
+                    <button type="submit">Login</button>
+                    <div id="responseMessage"></div>
+                `;
+                registerButton.textContent = 'REGISTER FOR TECHNICAL OFFICER';
+                registerButton.onclick = () => location.href = 'regt.html';
+            }
+
+            // Attach event listener for the login button
+            document.querySelector('.form-section button').addEventListener('click', function (event) {
+                event.preventDefault();
+                login(role);
+            });
+        }
+
+        async function login(role) {
+            const username = document.getElementById(`${role}Name`).value;
+            const password = document.getElementById(`${role}Password`).value;
+            const responseMessage = document.getElementById('responseMessage');
+
+            try {
+                const response = await fetch('http://localhost:3000/api/v1/users/login', { // Replace with your backend URL
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ username, password, role }),
+                });
+
+                const data = await response.json();
+
+                // Handle success or error
+                if (response.ok) {
+                    // Store token (if applicable) and redirect
+                    localStorage.setItem('authToken', data.token); // Store token if received
+                    console.log(localStorage.getItem('authToken'));
+                    let redirectPage;
+                    if (role === 'director') {
+                        window.location.href = 'hoif.html';
+                    } else if (role === 'project') {
+                        window.location.href = 'pmi.html';
+                    } else if (role === 'technical_officer') {
+                        window.location.href = 'tof.html';
+                    }
+                } else {
+                    responseMessage.innerText = `Error: ${data.message}`;
+                }
+            } catch (error) {
+                responseMessage.innerText = 'An error occurred.';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', updateForm);
+    </script>
+    <!-- <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script> -->
+    <script src="socket.js"></script>
+</head>
+
+<body>
+    <div class="maker-space"><h1><b>MAKER'S SPACE</b></h1></div>
+    <div class="container">
+        <label for="role">SELECT USER TYPE:</label>
+        <select id="role" name="role" onchange="updateForm()">
+            <option value="director" id="director">DIRECTOR</option>
+            <option value="project" id="project">MONITOR</option>
+            <option value="technical_officer">TECHNICAL OFFICER</option>
+        </select>
+        <form class="form-section" id="loginForm">
+            <!-- Initial form content will be inserted here by JavaScript -->
+        </form>
+        <div class="register">
+            <button id="registerButton" class="scaling">REGISTER FOR DIRECTOR</button>
+        </div>
+    </div>
+</body>
+
+</html>
